@@ -1,14 +1,18 @@
 package com.eadp.userserviceapi.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
+
+@Entity
 public class User {
 
+@Id
     private long propertyId;
     private String userId;
     private String fullName;
