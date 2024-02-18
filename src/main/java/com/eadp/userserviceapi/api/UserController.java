@@ -1,6 +1,7 @@
 package com.eadp.userserviceapi.api;
 
 import com.eadp.userserviceapi.dto.requst.RequestUserDto;
+import com.eadp.userserviceapi.dto.response.ResponseUserDto;
 import com.eadp.userserviceapi.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,9 @@ public class UserController {
     }
     @GetMapping(path = "{userId}")
 
-    public String findUser(@PathVariable String userId){
-        return userId;
+    public ResponseUserDto findUser(@PathVariable String userId){
+         return userService.fidUser(userId);
+
     }
     @PutMapping(path = "{userId}")
     public String updateUser(@RequestBody RequestUserDto dto,@PathVariable String userId) {

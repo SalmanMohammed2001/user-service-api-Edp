@@ -59,7 +59,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseUserDto fidUser(String userId) {
-        return null;
+        Optional<User> selectedUser = userRepo.findUserByUserId(userId);
+
+        ResponseUserDto responseUserDto = new ResponseUserDto(
+                selectedUser.get().getUserId(),
+                selectedUser.get().getFullName(),
+                selectedUser.get().getEmail(),
+                new String(selectedUser.get().getAvatarUrl()),
+                selectedUser.get().getStatus()
+        );
+
+
+        return responseUserDto;
     }
 
     @Override
@@ -68,7 +79,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<PaginateUserResponseUserDto> findUser(int page, int size, String searchText) {
+    public List<PaginateUserResponseUserDto> findAllUser(int page, int size, String searchText) {
         return null;
     }
 }

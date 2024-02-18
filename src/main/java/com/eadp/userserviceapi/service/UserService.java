@@ -12,5 +12,5 @@ public interface UserService {
     public void updateUser(RequestUserDto dto, String userID);
     public ResponseUserDto fidUser(String userId);
     public void deleteUser(String userId);
-    public List<PaginateUserResponseUserDto> findUser(int page, int size, String searchText);
+    public List<PaginateUserResponseUserDto> findAllUser(int page, int size, String searchText);
 }
