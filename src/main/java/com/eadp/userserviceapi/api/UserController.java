@@ -1,5 +1,6 @@
 package com.eadp.userserviceapi.api;
 
+import com.eadp.userserviceapi.dto.requst.RequestUserDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -7,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @PostMapping
-    public String createUser(){
-        return " create user";
+    public String createUser(@RequestBody RequestUserDto dto){
+        return dto.toString();
     }
     @GetMapping
     public String findUser(){
