@@ -3,14 +3,16 @@ package com.eadp.userserviceapi.api;
 import com.eadp.userserviceapi.dto.requst.RequestUserDto;
 import com.eadp.userserviceapi.service.UserService;
 import com.eadp.userserviceapi.util.StandardResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/shippingAddress")
+@RequestMapping("api/bellingAddress")
 public class ShippingAddressController {
 
+    @Autowired
     private UserService userService;
 
 
