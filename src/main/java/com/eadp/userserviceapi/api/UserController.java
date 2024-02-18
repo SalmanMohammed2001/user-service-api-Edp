@@ -11,20 +11,21 @@ public class UserController {
     public String createUser(@RequestBody RequestUserDto dto){
         return dto.toString();
     }
-    @GetMapping
-    public String findUser(){
-        return " find user";
+    @GetMapping(path = "{userId}")
+    public String findUser(@PathVariable String userId){
+        return userId;
     }
-    @PutMapping
-    public String updateUser(){
-        return " update user";
+    @PutMapping(path = "{userId}")
+    public String updateUser(@RequestBody RequestUserDto dto,@PathVariable String userId) {
+        return dto.toString();
     }
-    @DeleteMapping
-    public String deleteUser(){
-        return " delete user";
+    @DeleteMapping(params = {"userId"})
+    public String deleteUser(String userId){
+
+        return userId;
     }
-    @GetMapping("/list")
-    public String findAll(){
+    @GetMapping(value = "/list" ,params = {"page","size","searchText"})
+    public String findAll(@RequestParam int page , @RequestParam int size,@RequestParam String searchText){
         return "find all user";
     }
 }
