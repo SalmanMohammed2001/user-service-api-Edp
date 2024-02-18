@@ -3,7 +3,9 @@ package com.eadp.userserviceapi.service.impl;
 import com.eadp.userserviceapi.dto.paginate.PaginateUserResponseUserDto;
 import com.eadp.userserviceapi.dto.requst.RequestUserDto;
 import com.eadp.userserviceapi.dto.response.ResponseUserDto;
+import com.eadp.userserviceapi.repo.UserRepo;
 import com.eadp.userserviceapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +15,17 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+    private final UserRepo userRepo;
+
+    @Autowired
+    public UserServiceImpl(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
     @Override
     public void createUser(RequestUserDto dto) {
+
 
     }
 

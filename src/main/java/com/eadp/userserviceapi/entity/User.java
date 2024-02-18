@@ -1,7 +1,6 @@
 package com.eadp.userserviceapi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
@@ -12,11 +11,21 @@ import lombok.*;
 @Entity
 public class User {
 
-@Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "property-id")
     private long propertyId;
+
+    @Column(name = "user-id", unique = true)
     private String userId;
+
     private String fullName;
+
+    @Column(unique = true)
     private String email;
-    private String avatarUrl;
+
+    @Lob
+    private byte[] avatarUrl;
+
     private Boolean status;
 }
