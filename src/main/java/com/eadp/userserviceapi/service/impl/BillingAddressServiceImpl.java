@@ -3,7 +3,7 @@ package com.eadp.userserviceapi.service.impl;
 import com.eadp.userserviceapi.dto.commen.BillingAddressDto;
 import com.eadp.userserviceapi.entity.BillingAddress;
 import com.eadp.userserviceapi.entity.User;
-import com.eadp.userserviceapi.repo.BellingRepo;
+import com.eadp.userserviceapi.repo.BillingRepo;
 import com.eadp.userserviceapi.repo.UserRepo;
 import com.eadp.userserviceapi.service.BillingAddressService;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ import java.util.Optional;
 @Transactional
 public class BillingAddressServiceImpl implements BillingAddressService {
 
-    private final BellingRepo bellingRepo;
+    private final BillingRepo billingRepo;
 
     private final UserRepo userRepo;
 
-    public BillingAddressServiceImpl(BellingRepo bellingRepo, UserRepo userRepo) {
-        this.bellingRepo = bellingRepo;
+    public BillingAddressServiceImpl(BillingRepo billingRepo, UserRepo userRepo) {
+        this.billingRepo = billingRepo;
         this.userRepo = userRepo;
     }
 
@@ -34,7 +34,7 @@ public class BillingAddressServiceImpl implements BillingAddressService {
         billingAddress.setCity(dto.getCity());
         billingAddress.setZip(dto.getZip());
         billingAddress.setUser(selectedUserId.get());
-        bellingRepo.save(billingAddress);
+        billingRepo.save(billingAddress);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class BillingAddressServiceImpl implements BillingAddressService {
         if (selectedUser.isEmpty()) throw new RuntimeException();
 
 
-        Optional<BillingAddress> selectedBillingAddress = bellingRepo.findBillingAddressByUser(selectedUser.get());
+        Optional<BillingAddress> selectedBillingAddress = billingRepo.findBillingAddressByUser(selectedUser.get());
         if (selectedBillingAddress.isEmpty()) throw new RuntimeException();
         selectedBillingAddress.get().setCountry(dto.getCountry());
         selectedBillingAddress.get().setCity(dto.getCity());
         selectedBillingAddress.get().setZip(dto.getZip());
-        bellingRepo.save(selectedBillingAddress.get());
+        billingRepo.save(selectedBillingAddress.get());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class BillingAddressServiceImpl implements BillingAddressService {
         Optional<User> selectedUser = userRepo.findUserByUserId(userId);
         if (selectedUser.isEmpty()) throw new RuntimeException();
 
-        Optional<BillingAddress> selectedBillingAddress = bellingRepo.findBillingAddressByUser(selectedUser.get());
+        Optional<BillingAddress> selectedBillingAddress = billingRepo.findBillingAddressByUser(selectedUser.get());
         if (selectedBillingAddress.isEmpty()) throw new RuntimeException();
 
         return new BillingAddressDto(
@@ -72,9 +72,9 @@ public class BillingAddressServiceImpl implements BillingAddressService {
         Optional<User> selectedUser = userRepo.findUserByUserId(userId);
         if (selectedUser.isEmpty()) throw new RuntimeException();
 
-        Optional<BillingAddress> selectedBillingAddress = bellingRepo.findBillingAddressByUser(selectedUser.get());
+        Optional<BillingAddress> selectedBillingAddress = billingRepo.findBillingAddressByUser(selectedUser.get());
         if (selectedBillingAddress.isEmpty()) throw new RuntimeException();
 
-        bellingRepo.deleteById(selectedBillingAddress.get().getPropertyId());
+        billingRepo.deleteById(selectedBillingAddress.get().getPropertyId());
     }
 }

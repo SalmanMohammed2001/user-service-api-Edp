@@ -1,5 +1,6 @@
 package com.eadp.userserviceapi.repo;
 
+import com.eadp.userserviceapi.entity.BillingAddress;
 import com.eadp.userserviceapi.entity.ShippingAddress;
 import com.eadp.userserviceapi.entity.User;
 import org.springframework.data.domain.Pageable;
@@ -11,4 +12,5 @@ import java.util.Optional;
 
 public interface ShippingRepo extends JpaRepository<ShippingAddress,Long> {
 
+    public Optional<ShippingAddress> findBillingAddressByUser(User user);
 }
