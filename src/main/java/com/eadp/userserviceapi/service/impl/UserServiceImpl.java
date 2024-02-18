@@ -8,10 +8,13 @@ import com.eadp.userserviceapi.repo.UserRepo;
 import com.eadp.userserviceapi.service.UserService;
 import com.eadp.userserviceapi.util.KeyManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -83,7 +86,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<PaginateUserResponseUserDto> findAllUser(int page, int size, String searchText) {
-        return null;
+    public PaginateUserResponseUserDto findAllUser(int page, int size, String searchText) {
+
+        List<User> allUser = userRepo.findAllUser(searchText, PageRequest.of(page, size));
+        Long count = userRepo.findAllUserCount(searchText);
+
+        List<ResponseUserDto> dtos=new ArrayList<>();
+        allUser.forEach(e->{
+          dtos.add(new ResponseUserDto(
+                  e.getUserId(),
+                  e.getFullName(),
+                  e.getEmail(),
+                  new String(e.getAvatarUrl()),
+                  e.getStatus()
+          ));
+        });
+
+        return new PaginateUserResponseUserDto(count,dtos);
     }
 }

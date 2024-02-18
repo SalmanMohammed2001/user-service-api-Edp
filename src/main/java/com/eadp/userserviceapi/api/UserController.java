@@ -1,5 +1,6 @@
 package com.eadp.userserviceapi.api;
 
+import com.eadp.userserviceapi.dto.paginate.PaginateUserResponseUserDto;
 import com.eadp.userserviceapi.dto.requst.RequestUserDto;
 import com.eadp.userserviceapi.dto.response.ResponseUserDto;
 import com.eadp.userserviceapi.service.UserService;
@@ -38,7 +39,8 @@ public class UserController {
         return userId + "delete ";
     }
     @GetMapping(value = "/list" ,params = {"page","size","searchText"})
-    public String findAll(@RequestParam int page , @RequestParam int size,@RequestParam String searchText){
-        return "find all user";
+    public PaginateUserResponseUserDto findAll(@RequestParam int page , @RequestParam int size,@RequestParam String searchText){
+
+       return userService.findAllUser(page, size, searchText);
     }
 }
