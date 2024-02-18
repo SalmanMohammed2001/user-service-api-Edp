@@ -1,9 +1,8 @@
 package com.eadp.userserviceapi.service;
 
 import com.eadp.userserviceapi.dto.commen.BillingAddressDto;
-import com.eadp.userserviceapi.dto.commen.ShippingAddressDto;
 
-public interface BellingAddressService {
+public interface BillingAddressService {
 
     public void saveBellingAddress(BillingAddressDto dto, String userId);
     public void updateBellingAddress(BillingAddressDto dto,String userId);
