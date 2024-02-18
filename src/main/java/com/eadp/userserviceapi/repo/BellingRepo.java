@@ -1,8 +1,14 @@
 package com.eadp.userserviceapi.repo;
 
+import com.eadp.userserviceapi.entity.BillingAddress;
 import com.eadp.userserviceapi.entity.ShippingAddress;
+import com.eadp.userserviceapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BellingRepo extends JpaRepository<BellingRepo,Long> {
+import java.util.Optional;
+
+public interface BellingRepo extends JpaRepository<BillingAddress,Long> {
+
+    public Optional<BillingAddress> findBillingAddressByUser(User user);
 
 }

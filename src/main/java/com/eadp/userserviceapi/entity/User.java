@@ -30,4 +30,13 @@ public class User {
     private byte[] avatarUrl;
 
     private Boolean status;
+
+
+    @OneToOne(mappedBy = "user")
+    private ShippingAddress shippingAddress;
+
+    @OneToOne(mappedBy = "user")
+    private BillingAddress billingAddress;
+
+
 }
