@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: user-service-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/eadp_user_api_db?createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 1234
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect

@@ -24,6 +24,6 @@ public class UserController {
     }
     @GetMapping("/list")
     public String findAll(){
-        return "find user";
+        return "find all user";
     }
 }
