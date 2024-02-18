@@ -60,6 +60,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseUserDto fidUser(String userId) {
         Optional<User> selectedUser = userRepo.findUserByUserId(userId);
+        if (selectedUser.isEmpty()) throw new RuntimeException("Id Not Found");
+    //    String avatar=new String(selectedUser.get().getAvatarUrl(), StandardCharsets.UTF_8);
 
         ResponseUserDto responseUserDto = new ResponseUserDto(
                 selectedUser.get().getUserId(),
@@ -75,7 +77,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) {
-
+        Optional<User> selectedUser = userRepo.findUserByUserId(userId);
+        if (selectedUser.isEmpty()) throw new RuntimeException("Id Not Found");
+        userRepo.deleteById(selectedUser.get().getPropertyId());
     }
 
     @Override

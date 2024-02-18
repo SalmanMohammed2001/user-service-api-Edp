@@ -34,8 +34,8 @@ public class UserController {
     }
     @DeleteMapping(params = {"userId"})
     public String deleteUser(String userId){
-
-        return userId;
+    userService.deleteUser(userId);
+        return userId + "delete ";
     }
     @GetMapping(value = "/list" ,params = {"page","size","searchText"})
     public String findAll(@RequestParam int page , @RequestParam int size,@RequestParam String searchText){
